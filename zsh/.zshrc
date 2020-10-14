@@ -20,6 +20,8 @@ alias rt="trash-put"
 alias vi='nvim -u ~/.config/nvim/minimal.vim'
 alias vim='nvim'
 alias cp="cp -i"
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
 
 export PATH=$PATH:~/Bin
 export PATH=/usr/local/sbin:$PATH
