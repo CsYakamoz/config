@@ -29,8 +29,8 @@ alias gwr="git worktree remove"
 export PATH=$PATH:~/Bin
 export PATH=$PATH:/usr/local/sbin
 
-if command -v "nat" > /dev/null; then
-  alias ll="nat"
+if command -v "exa" > /dev/null; then
+  alias ll="exa -l"
 fi
 
 export LANG=zh_CN.UTF-8
@@ -93,7 +93,7 @@ esgwt() {
   list="${header}\n$(echo "${list}" | sort)"
 
   local chosen=""
-  chosen=$(echo "${list}" | fzf --header-lines=1 --prompt 'Worktree> ')
+  chosen=$(echo "${list}" | fzf --header-lines=1 -q "$1" --prompt 'Worktree> ')
   if [[ -z "${chosen}" ]]; then
     return
   fi
