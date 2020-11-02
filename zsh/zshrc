@@ -29,10 +29,6 @@ alias gwr="git worktree remove"
 export PATH=$PATH:~/Bin
 export PATH=$PATH:/usr/local/sbin
 
-if command -v "exa" > /dev/null; then
-  alias ll="exa -l"
-fi
-
 export LANG=zh_CN.UTF-8
 export LC_ALL=zh_CN.UTF-8
 
@@ -101,6 +97,21 @@ esgwt() {
   local target="${lcp}/${chosen% *}"
   cd "${target}" || return
 }
+
+_esgwt() {
+  COMPREPLY=()
+
+  if ! git worktree list > /dev/null 2>&1; then
+    return 0
+  fi
+
+  local list
+  list=$(git worktree list | awk '{print $1}' | while read dir; do basename "${dir}"; done)
+  COMPREPLY=( $(compgen -W "${list}") )
+  return 0
+}
+
+complete -F _esgwt esgwt
 
 # vim-open: open file in vim
 # require: realpath, neovim-remote, vim-floaterm
