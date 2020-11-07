@@ -133,7 +133,7 @@ vopen() {
   fi
 
   nvr --servername "${NVIM_LISTEN_ADDRESS}" -l "${name}"
-  nvr --servername "${NVIM_LISTEN_ADDRESS}" -l --remote-send "<Esc>:FloatermToggle<CR>"
+  nvr --servername "${NVIM_LISTEN_ADDRESS}" -l --remote-send "<C-\\><C-n>:FloatermToggle<CR>"
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
