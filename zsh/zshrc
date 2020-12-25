@@ -100,7 +100,7 @@ esgwt() {
   list="${header}\n$(echo -e "${list}" | sort)"
 
   local chosen=""
-  chosen=$(echo -e "${list}" | fzf --header-lines=1 -q "$1" --prompt 'Worktree> ')
+  chosen=$(echo -e "${list}" | fzf -1 --header-lines=1 -q "$1" --prompt 'Worktree> ')
   if [[ -z "${chosen}" ]]; then
     return
   fi
