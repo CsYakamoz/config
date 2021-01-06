@@ -181,7 +181,7 @@ bd() {
   if [[ -z "${chosen}" ]]; then
     return
   fi
-  cd "${chosen}" || exit
+  cd "${chosen}" || return
 }
 # }}} func bd #
 

@@ -1,4 +1,5 @@
 [user]
 	name = CsYakamoz
 	email = 532609418@qq.com
-
+[core]
+	editor = vim
