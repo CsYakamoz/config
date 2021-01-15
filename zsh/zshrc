@@ -36,8 +36,10 @@ alias gwr="git worktree remove"
 export PATH=$PATH:~/Bin
 export PATH=$PATH:/usr/local/sbin
 
-export LANG=zh_CN.UTF-8
-export LC_ALL=zh_CN.UTF-8
+# export LANG=zh_CN.UTF-8
+# export LC_ALL=zh_CN.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 # }}} export #
 
 # proxy {{{ #
@@ -184,5 +186,45 @@ bd() {
   cd "${chosen}" || return
 }
 # }}} func bd #
+
+# func grs {{{ #
+# easily run git restore command, require: fzf
+unalias grs # oh-my-zsh git plugin has defined grs
+grs() {
+  if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    echo 'not a git repository, ignore...'
+    return
+  fi
+
+  local requiredVer="2.25.0"
+  local currentVer=""
+  currentVer=$(git --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
+  if [ "$(printf '%s\n' "${requiredVer}" "$currentVer" | sort -V | head -n1)" != "${requiredVer}" ]; then 
+    echo "git version is at least ${requiredVer} for restore command"
+    return
+  fi
+
+  local cmd=""
+  local list=""
+  if [[ $# > 0 ]]; then
+    list=$(git diff --name-only "$1")
+    cmd="git restore $1"
+  else
+    list=$(git diff --name-only)
+    cmd="git restore"
+  fi
+  if [[ -z "${list}" ]]; then
+    echo 'no file to restore, ignore...'
+    return
+  fi
+
+  chosen=$(echo -e "${list}" | fzf -m --prompt 'GRestore> ' --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all)
+  if [[ -z "${chosen}" ]]; then
+    return
+  fi
+
+  eval ${cmd} $1 $(echo -e "${chosen}")
+}
+# }}} func grs #
 
 # vim: set sw=2 ts=2 sts=2 et foldmarker={{{,}}} foldmethod=marker foldlevel=0:
