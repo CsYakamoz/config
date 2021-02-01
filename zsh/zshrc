@@ -206,19 +206,27 @@ grs() {
 
   local cmd=""
   local list=""
+  local diff=""
   if [[ $# > 0 ]]; then
     list=$(git diff --name-only "$1")
     cmd="git restore $1"
+    diff="git diff $1"
   else
     list=$(git diff --name-only)
     cmd="git restore"
+    diff="git diff"
   fi
   if [[ -z "${list}" ]]; then
     echo 'no file to restore, ignore...'
     return
   fi
 
-  chosen=$(echo -e "${list}" | fzf -m --prompt 'GRestore> ' --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all)
+  local chosen=""
+  chosen=$(echo -e "${list}" | \
+    fzf -m --prompt 'GRestore> ' \
+    --bind alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all,ctrl-/:toggle-preview,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up \
+    --preview="${diff} --color=always {}" \
+  )
   if [[ -z "${chosen}" ]]; then
     return
   fi
