@@ -199,7 +199,7 @@ grs() {
   local requiredVer="2.25.0"
   local currentVer=""
   currentVer=$(git --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
-  if [ "$(printf '%s\n' "${requiredVer}" "$currentVer" | sort -V | head -n1)" != "${requiredVer}" ]; then 
+  if [ "$(printf '%s\n' "${requiredVer}" "$currentVer" | sort -V | head -n1)" != "${requiredVer}" ]; then
     echo "git version is at least ${requiredVer} for restore command"
     return
   fi
