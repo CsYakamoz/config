@@ -43,8 +43,8 @@ export LC_ALL=en_US.UTF-8
 # }}} export #
 
 # proxy {{{ #
-alias proxy_on="export http_proxy=http://127.0.0.1:8001;export https_proxy=http://127.0.0.1:8001;export HTTP_PROXY=http://127.0.0.1:8001;export HTTPS_PROXY=http://127.0.0.1:8001;"
-alias proxy_off="unset http_proxy;unset https_proxy;unset HTTP_PROXY;unset HTTPS_PROXY;"
+alias proxy_on="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
+alias proxy_off="unset http_proxy;unset https_proxy;unset HTTP_PROXY;unset all_proxy;"
 # }}} proxy #
 
 # func esgwt {{{ #
