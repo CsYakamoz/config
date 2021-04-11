@@ -30,6 +30,7 @@ alias cp="cp -i"
 alias gw="git worktree"
 alias gwa="git worktree add"
 alias gwr="git worktree remove"
+alias gvd="git difftool"
 # }}} alias #
 
 # export {{{ #
@@ -204,6 +205,9 @@ grs() {
     return
   fi
 
+  local gitRoot=""
+  gitRoot=$(git rev-parse --show-toplevel)
+
   local cmd=""
   local list=""
   local diff=""
@@ -225,13 +229,13 @@ grs() {
   chosen=$(echo -e "${list}" | \
     fzf -m --prompt 'GRestore> ' \
     --bind alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all,ctrl-/:toggle-preview,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up \
-    --preview="${diff} --color=always {}" \
+    --preview="${diff} --color=always ${gitRoot}/{}" \
   )
   if [[ -z "${chosen}" ]]; then
     return
   fi
 
-  eval ${cmd} $1 $(echo -e "${chosen}")
+  (cd "${gitRoot}"; eval ${cmd} $1 $(echo -e "${chosen}"))
 }
 # }}} func grs #
 

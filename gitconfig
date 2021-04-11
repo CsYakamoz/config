@@ -3,3 +3,7 @@
 	email = 532609418@qq.com
 [core]
 	editor = vim
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
