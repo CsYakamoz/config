@@ -138,6 +138,21 @@
               "key_code": "f9"
             }
           ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "0",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f10"
+            }
+          ]
         }
       ]
     }
