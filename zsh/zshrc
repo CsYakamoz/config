@@ -236,7 +236,7 @@ grs() {
 }
 # }}} func grs #
 
-# gwa {{{ #
+# func gwa {{{ #
 gwa() {
   if ! git worktree list > /dev/null 2>&1; then
     echo 'not a git repository, ignore...'
@@ -273,6 +273,21 @@ gwa() {
       ;;
   esac
 }
-# }}} gwa #
+# }}} func gwa #
+
+# func ide {{{ #
+# reference: https://www.youtube.com/watch?v=sSOfr2MtRU8&t=335s
+ide() {
+  if [[ -z "${TMUX}" ]]; then
+    echo "not in tmux-session"
+    return
+  fi
+
+  tmux split-window -v -p 30
+  tmux split-window -h -p 66
+  tmux split-window -h -p 50
+  tmux select-pane -t 1
+}
+# }}} func ide #
 
 # vim: set sw=2 ts=2 sts=2 et foldmarker={{{,}}} foldmethod=marker foldlevel=0:
