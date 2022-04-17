@@ -27,13 +27,6 @@ else
     "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting"
 fi
 
-if [[ -e "$HOME/.zsh/pure" ]]; then
-  echo "$HOME/.zsh/pure already existed, ignored..."
-else
-  mkdir -p "$HOME/.zsh"
-  git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
-fi
-
 /bin/cp -i "${scriptDir}/zshrc" "${HOME}/.zshrc"
 
 echo "zshrc/install.sh finish..."
