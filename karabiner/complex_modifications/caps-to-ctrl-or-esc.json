@@ -1,8 +1,9 @@
 {
-  "title": "Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
+  "title": "Esc if Caps is tapped, Ctrl if held",
+  "maintainers": ["csyakamoz"],
   "rules": [
     {
-      "description": "Change caps_lock to control if pressed with other keys, to escape if pressed alone.",
+      "description": "Esc if Caps is tapped, Ctrl if held",
       "manipulators": [
         {
           "type": "basic",
@@ -14,7 +15,8 @@
           },
           "to": [
             {
-              "key_code": "left_control"
+              "key_code": "left_control",
+              "lazy": true
             }
           ],
           "to_if_alone": [

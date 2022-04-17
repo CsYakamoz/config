@@ -1,8 +1,35 @@
 {
-  "title": "Change Right command + number to FNumber",
+  "title": "Keyboard shortcuts for Terminal apps",
+  "maintainers": ["csyakamoz"],
   "rules": [
     {
-      "description": "Change Right command + number to FNumber",
+      "description": "Toggle Term for (Neo)Vim",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "j",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "FNumber when Right Command with Number",
       "manipulators": [
         {
           "type": "basic",
@@ -16,6 +43,12 @@
           "to": [
             {
               "key_code": "f1"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
             }
           ]
         },
@@ -32,6 +65,12 @@
             {
               "key_code": "f2"
             }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            }
           ]
         },
         {
@@ -46,6 +85,12 @@
           "to": [
             {
               "key_code": "f3"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
             }
           ]
         },
@@ -62,6 +107,12 @@
             {
               "key_code": "f4"
             }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            }
           ]
         },
         {
@@ -76,6 +127,12 @@
           "to": [
             {
               "key_code": "f5"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
             }
           ]
         },
@@ -92,6 +149,12 @@
             {
               "key_code": "f6"
             }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            }
           ]
         },
         {
@@ -106,6 +169,12 @@
           "to": [
             {
               "key_code": "f7"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
             }
           ]
         },
@@ -122,6 +191,12 @@
             {
               "key_code": "f8"
             }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            }
           ]
         },
         {
@@ -137,6 +212,12 @@
             {
               "key_code": "f9"
             }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
+            }
           ]
         },
         {
@@ -151,6 +232,12 @@
           "to": [
             {
               "key_code": "f10"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.github\\.wez\\.wezterm$"]
             }
           ]
         }

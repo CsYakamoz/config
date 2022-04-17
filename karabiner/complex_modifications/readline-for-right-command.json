@@ -1,8 +1,9 @@
 {
-  "title": "Change right_command+BS,b,d,f to right_option+BS,b,d,f",
+  "title": "Right Command for Readline",
+  "maintainers": ["csyakamoz"],
   "rules": [
     {
-      "description": "Change right_command+BS,b,d,f to right_option+BS,b,d,f",
+      "description": "Right Command for Readline",
       "manipulators": [
         {
           "type": "basic",
@@ -15,7 +16,7 @@
           "to": [
             {
               "key_code": "delete_or_backspace",
-              "modifiers": ["right_option"]
+              "modifiers": ["left_option"]
             }
           ]
         },
@@ -30,7 +31,7 @@
           "to": [
             {
               "key_code": "b",
-              "modifiers": ["right_option"]
+              "modifiers": ["left_option"]
             }
           ]
         },
@@ -45,7 +46,7 @@
           "to": [
             {
               "key_code": "d",
-              "modifiers": ["right_option"]
+              "modifiers": ["left_option"]
             }
           ]
         },
@@ -60,7 +61,7 @@
           "to": [
             {
               "key_code": "f",
-              "modifiers": ["right_option"]
+              "modifiers": ["left_option"]
             }
           ]
         }
