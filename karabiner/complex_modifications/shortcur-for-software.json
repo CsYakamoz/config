@@ -1,0 +1,31 @@
+{
+  "title": "Keyboard shortcuts for Software",
+  "maintainers": ["csyakamoz"],
+  "rules": [
+    {
+      "description": "Xnip Shortcut",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "s",
+              "modifiers": [
+                "left_control",
+                "left_option",
+                "left_shift",
+                "left_command"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
