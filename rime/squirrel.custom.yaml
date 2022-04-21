@@ -2,7 +2,4 @@ patch:
   style/horizontal: true
   style/font_point: 18
   us_keyboard_layout: true
-  # style/color_scheme: ink
-  # style/color_scheme: psionics
-  # style/color_scheme: luna
   style/color_scheme: purity_of_essence
