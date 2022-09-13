@@ -85,7 +85,7 @@ esgwt() {
   local list=""
   local header=""
   while read -r loop_var; do
-    local suffix="${loop_var#${lcp}}"
+    local suffix="${loop_var#"${lcp}"}"
     if [[ "${loop_var}" == "${current_dir}"* ]]; then
       header="${suffix}"
     else
@@ -115,8 +115,9 @@ _esgwt() {
   fi
 
   local list
-  list=$(git worktree list | awk '{print $1}' | while read dir; do basename "${dir}"; done)
-  COMPREPLY=( $(compgen -W "${list}") )
+  list=$(git worktree list | awk '{print $1}' | while read -r dir; do basename "${dir}"; done)
+  # reference: https://www.shellcheck.net/wiki/SC2207
+  mapfile -t COMPREPLY < <(compgen -W "${list}")
   return 0
 }
 
@@ -179,7 +180,7 @@ grs() {
   local cmd=""
   local list=""
   local diff=""
-  if [[ $# > 0 ]]; then
+  if [[ $# -gt 0 ]]; then
     list=$(git diff --name-only "$1")
     cmd="git restore $1"
     diff="git diff $1"
@@ -203,7 +204,7 @@ grs() {
     return
   fi
 
-  (cd "${gitRoot}"; eval ${cmd} $1 $(echo -e "${chosen}"))
+  (cd "${gitRoot}" && eval "${cmd}" "$1" "$(echo -e "${chosen}")")
 }
 # }}} func grs #
 
@@ -235,10 +236,10 @@ gwa() {
   echo -e "cmd is '$cmd'"
 
   local answer
-  read "?[gwa] Really run this cmd? [Y/n]" answer
+  read -r "?[gwa] Really run this cmd? [Y/n]" answer
   case "$answer" in
     y|Y)
-      (cd "${git_root}"; eval "$cmd")
+      (cd "${git_root}" && eval "$cmd")
       ;;
     *)
       ;;
