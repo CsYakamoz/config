@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm';
+local wezterm = require("wezterm")
 
 return {
 	-- to see font config, use command: wezterm ls-fonts [--list-system]
@@ -8,8 +8,6 @@ return {
 		"SauceCodePro Nerd Font Mono",
 		{ weight = "DemiBold", stretch = "Normal", style = "Normal" }
 	),
-
-	color_scheme = "Builtin Solarized Light",
 
 	window_decorations = "RESIZE",
 	hide_tab_bar_if_only_one_tab = true,
