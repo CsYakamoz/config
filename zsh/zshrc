@@ -262,8 +262,43 @@ ide() {
 }
 # }}} func ide #
 
-# fzf completion
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# func color {{{ #
+color() {
+  if [[ $# -eq 0 || ($1 != "light" && $1 != "dark") ]]; then
+    echo "usage: color <light|dark>"
+    return
+  fi
+
+  local config=(
+    # dir                                         extension    cmd
+    "${HOME}/.tmux"                               ".conf"      "tmux source-file ~/.tmux.conf"
+    "${HOME}/.config/wezterm"                     ".lua"       ""
+    "${HOME}/.config/nvim/lua/user/colorscheme"   ".lua"       "switch_nvim_color $1"
+  )
+
+  local i dir suffix cmd
+  for (( i = 1; i <= ${#config[@]}; i+=3 )); do
+    dir=${config[$i]}
+    suffix="${config[$i+1]}"
+    cmd="${config[$i+2]}"
+
+    if [[ ! -d "${dir}" ]]; then
+      echo "${dir} is not existed, skip..."
+      continue
+    fi
+
+    (cd "${dir}" && ln -fs "$1${suffix}" "color${suffix}")
+    if [[ -z "${cmd}" ]]; then
+      echo "no cmd for ${dir}"
+      continue
+    fi
+
+    eval "${cmd}" &
+  done
+
+  wait
+}
+# }}} func color #
 
 # init {{{ #
 # fnm setup
@@ -272,7 +307,12 @@ init_fnm() {
 }
 # }}} init #
 
+# external software {{{ #
+# fzf completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# }}} external software #
 
 # vim: set sw=2 ts=2 sts=2 et foldmarker={{{,}}} foldmethod=marker foldlevel=0:
