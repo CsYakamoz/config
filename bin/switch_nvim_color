@@ -24,7 +24,7 @@ def main():
         len(sys.argv[1:]) < 1 or
         (sys.argv[1] != 'light' and sys.argv[1] != 'dark')
     ):
-        print('usage: py_color <light|dark>')
+        print('usage: switch_nvim_color <light|dark>')
         return
     color = sys.argv[1]
 
