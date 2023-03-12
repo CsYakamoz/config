@@ -45,7 +45,7 @@ def main():
             continue
 
         nvim = attach('socket', path=socket)
-        nvim.command(f'set background={color}')
+        nvim.command(f'Cs{color.capitalize()}Color')
         nvim.close()
 
 if __name__ == '__main__':
