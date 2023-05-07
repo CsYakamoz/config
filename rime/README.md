@@ -15,3 +15,8 @@ Windows: `%APPDATA%\Rime`
 ### Mac
 
 `System Preferences` -> `Keyboard` -> `Input Sources` -> `Automatically switch to a document's input source`
+
+## 参考
+
+[雾凇拼音](https://github.com/iDvel/rime-ice)
+[Rime 鼠须管（Squirrel）皮肤效果](https://github.com/NavisLab/rime-pifu)

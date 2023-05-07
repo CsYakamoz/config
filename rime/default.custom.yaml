@@ -2,7 +2,12 @@ patch:
   menu/page_size: 7
 
   schema_list:
+    # - schema: rime_ice
     - schema: luna_pinyin
+
+  switcher:
+    hotkeys:
+      - Control+grave
 
   ascii_composer:
     switch_key:
