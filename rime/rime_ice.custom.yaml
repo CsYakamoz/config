@@ -1,3 +1,14 @@
 patch:
-  "switches/@0/reset": 1 # 默认英文
-  "switches/@4/reset": 0 # 默认半角
+  switches:
+    - name: ascii_mode
+      states: [中文, 西文]
+      reset: 1
+    - name: ascii_punct
+      states: [。，, ．，]
+    - name: traditionalization
+      states: [汉字, 漢字]
+    - name: emoji
+      states: [💀, 😄]
+    - name: full_shape
+      states: [半角, 全角]
+      reset: 0

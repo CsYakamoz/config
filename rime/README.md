@@ -4,7 +4,15 @@
 
 [Rime docs](https://rime.im/docs/)
 
-## Configuration Directory
+## Share Configuration Directory
+
+Mac: `/Library/Input Methods/Squirrel.app/Contents/SharedSupport/`
+
+Linux: `/usr/share/rime-data/`
+
+Windows: `<installation_dir>\data`
+
+## User Configuration Directory
 
 Mac: `~/Library/Rime`
 
@@ -15,6 +23,8 @@ Windows: `%APPDATA%\Rime`
 ### Mac
 
 `System Preferences` -> `Keyboard` -> `Input Sources` -> `Automatically switch to a document's input source`
+
+> 记住上次使用 App 的输入法, 然后自动切换
 
 ## 参考
 
