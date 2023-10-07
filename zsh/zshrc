@@ -1,3 +1,4 @@
+# shellcheck disable=SC2296,SC1090,SC2148
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -15,7 +16,8 @@ plugins=(
   sudo
   jump
   zsh-autosuggestions
-  fast-syntax-highlighting
+  F-Sy-H
+  zsh-autopair
 )
 # }}} plugins #
 
@@ -123,16 +125,6 @@ _esgwt() {
 
 complete -F _esgwt esgwt
 # }}} func esgwt #
-
-# plugin zsh-autopair {{{ #
-if [[ ! -d ~/.zsh/zsh-autopair ]]; then
-  mkdir -p ~/.zsh
-  git clone https://github.com/hlissner/zsh-autopair ~/.zsh/zsh-autopair
-fi
-
-source ~/.zsh/zsh-autopair/autopair.zsh
-autopair-init
-# }}} plugin zsh-autopair #
 
 # func bd {{{ #
 # reference: https://github.com/Tarrasch/zsh-bd
