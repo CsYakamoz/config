@@ -11,15 +11,15 @@ else
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-function _zsh_install_plugin() {
-  PLUGIN_NAME="$(basename "$1")"
-  CUSTOM_PLUGIN="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
+function _zsh_install() {
+  NAME="$(basename "$2")"
+  TARGET_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/$1"
 
-  if [[ -e "${CUSTOM_PLUGIN}/${PLUGIN_NAME}" ]]; then
-    echo "${CUSTOM_PLUGIN}/${PLUGIN_NAME} already existed, ignored..."
+  if [[ -e "${TARGET_DIR}/${NAME}" ]]; then
+    echo "${TARGET_DIR}/${NAME} already existed, ignored..."
   else
-    echo "installing ${PLUGIN_NAME}..."
-    git clone "$1" "${CUSTOM_PLUGIN}/${PLUGIN_NAME}"
+    echo "installing ${NAME}..."
+    git clone --depth=1 "$2" "${TARGET_DIR}/${NAME}"
   fi
 }
 
@@ -36,11 +36,13 @@ function _zsh_backup() {
   /bin/cp -i "${target}" "${backup}"
 }
 
-_zsh_install_plugin "https://github.com/zsh-users/zsh-autosuggestions"
-_zsh_install_plugin "https://github.com/z-shell/F-Sy-H.git"
-_zsh_install_plugin "https://github.com/hlissner/zsh-autopair.git"
+_zsh_install "plugins" "https://github.com/zsh-users/zsh-autosuggestions"
+_zsh_install "plugins" "https://github.com/z-shell/F-Sy-H"
+_zsh_install "plugins" "https://github.com/hlissner/zsh-autopair"
+_zsh_install "themes" "https://github.com/romkatv/powerlevel10k"
 
-_zsh_backup "${HOME}/.zshrc"
+# the zsh-installer already rename an existing .zshrc file to .zshrc.pre-oh-my-zsh.
+# _zsh_backup "${HOME}/.zshrc"
 _zsh_backup "${HOME}/.p10k.zsh"
 
 /bin/cp -i "${script_dir}/zshrc" "${HOME}/.zshrc"
