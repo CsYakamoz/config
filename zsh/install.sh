@@ -8,7 +8,7 @@ if [[ -e "${HOME}/.oh-my-zsh" ]]; then
   echo "${HOME}/.oh-my-zsh already existed, ignored..."
 else
   echo "installing oh-my-zsh..."
-  sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 function _zsh_install_plugin() {
