@@ -42,7 +42,7 @@ _zsh_install "plugins" "https://github.com/hlissner/zsh-autopair"
 _zsh_install "themes" "https://github.com/romkatv/powerlevel10k"
 
 # the zsh-installer already rename an existing .zshrc file to .zshrc.pre-oh-my-zsh.
-# _zsh_backup "${HOME}/.zshrc"
+_zsh_backup "${HOME}/.zshrc"
 _zsh_backup "${HOME}/.p10k.zsh"
 
 /bin/cp -i "${script_dir}/zshrc" "${HOME}/.zshrc"
