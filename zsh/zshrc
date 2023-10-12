@@ -45,10 +45,20 @@ alias proxy_on="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0
 alias proxy_off="unset http_proxy;unset https_proxy;unset HTTP_PROXY;unset all_proxy;"
 # }}} proxy #
 
+# git-helper {{{ #
+function is_in_git() {
+  git rev-parse --is-inside-work-tree > /dev/null 2>&1
+}
+
+function git_repository_root() {
+  git rev-parse --show-toplevel
+}
+# }}} git-helper #
+
 # func esgwt {{{ #
 # easily switch git worktree, require: fzf
 esgwt() {
-  if ! git worktree list > /dev/null 2>&1; then
+  if ! is_in_git; then
     echo 'not a git repository, ignore...'
     return
   fi
@@ -82,7 +92,7 @@ esgwt() {
   fi
 
   local current_dir=""
-  current_dir=$(git rev-parse --show-toplevel)
+  current_dir=$(git_repository_root)
 
   local list=""
   local header=""
@@ -112,7 +122,7 @@ esgwt() {
 _esgwt() {
   COMPREPLY=()
 
-  if ! git worktree list > /dev/null 2>&1; then
+  if ! is_in_git; then
     return 0
   fi
 
@@ -153,7 +163,7 @@ bd() {
 # easily run git restore command, require: fzf
 unalias grs # oh-my-zsh git plugin has defined grs
 grs() {
-  if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+  if ! is_in_git; then
     echo 'not a git repository, ignore...'
     return
   fi
@@ -166,8 +176,8 @@ grs() {
     return
   fi
 
-  local gitRoot=""
-  gitRoot=$(git rev-parse --show-toplevel)
+  local git_root=""
+  git_root=$(git_repository_root)
 
   local cmd=""
   local list=""
@@ -190,19 +200,19 @@ grs() {
   chosen=$(echo -e "${list}" | \
     fzf -m --prompt 'GRestore> ' \
     --bind alt-a:select-all,alt-d:deselect-all,alt-t:toggle-all,ctrl-/:toggle-preview,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up \
-    --preview="${diff} --color=always ${gitRoot}/{}" \
+    --preview="${diff} --color=always ${git_root}/{}" \
   )
   if [[ -z "${chosen}" ]]; then
     return
   fi
 
-  (cd "${gitRoot}" && eval "${cmd}" "$1" "$(echo -e "${chosen}")")
+  (cd "${git_root}" && eval "${cmd}" "$1" "$(echo -e "${chosen}")")
 }
 # }}} func grs #
 
 # func gwa {{{ #
 gwa() {
-  if ! git worktree list > /dev/null 2>&1; then
+  if ! is_in_git; then
     echo 'not a git repository, ignore...'
     return 0
   fi
@@ -222,7 +232,7 @@ gwa() {
   done
 
   local git_root="" cmd
-  git_root=$(git rev-parse --show-toplevel)
+  git_root=$(git_repository_root)
   cmd="git worktree add ../${1} -b ${choice}/v$(date +"%Y%m%d")-${1}"
   echo -e "git root: ${git_root}"
   echo -e "cmd is '$cmd'"
