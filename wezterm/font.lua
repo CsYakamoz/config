@@ -18,4 +18,9 @@ return {
 		{ family = "Iosevka Nerd Font", weight = "DemiBold", stretch = "Normal", style = "Normal" },
 		PingFang,
 	}),
+
+	Monaspace = wezterm.font_with_fallback({
+		{ family = "MonaspiceKr Nerd Font", weight = "Medium", stretch = "Normal", style = "Normal" },
+		PingFang,
+	}),
 }
