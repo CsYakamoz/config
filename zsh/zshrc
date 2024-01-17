@@ -30,6 +30,7 @@ source $ZSH/oh-my-zsh.sh
 # alias {{{ #
 alias j="jump"
 alias cp="cp -i"
+alias tailf="tail -f"
 alias gw="git worktree"
 alias gwr="git worktree remove"
 alias gopen="git-open"
