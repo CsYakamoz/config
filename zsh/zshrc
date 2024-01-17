@@ -15,9 +15,13 @@ plugins=(
   git
   sudo
   jump
+  colored-man-pages
+
   zsh-autosuggestions
   F-Sy-H
   zsh-autopair
+  fzf-tab
+  git-open
 )
 # }}} plugins #
 
@@ -28,6 +32,7 @@ alias j="jump"
 alias cp="cp -i"
 alias gw="git worktree"
 alias gwr="git worktree remove"
+alias gopen="git-open"
 # }}} alias #
 
 # export {{{ #

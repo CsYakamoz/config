@@ -39,6 +39,9 @@ function _zsh_backup() {
 _zsh_install "plugins" "https://github.com/zsh-users/zsh-autosuggestions"
 _zsh_install "plugins" "https://github.com/z-shell/F-Sy-H"
 _zsh_install "plugins" "https://github.com/hlissner/zsh-autopair"
+_zsh_install "plugins" "https://github.com/Aloxaf/fzf-tab"
+_zsh_install "plugins" "https://github.com/paulirish/git-open"
+
 _zsh_install "themes" "https://github.com/romkatv/powerlevel10k"
 
 # the zsh-installer already rename an existing .zshrc file to .zshrc.pre-oh-my-zsh.
